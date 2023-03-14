@@ -23,6 +23,9 @@ class Number:
         out._backward = _backward
 
         return out
+    
+    def __radd__(self, other):
+        return self + other
 
     def __mul__(self, other):
         other  = other if isinstance(other, Number) else Number(data=other)
@@ -35,6 +38,9 @@ class Number:
         out._backward = _backward
 
         return out
+
+    def __rmul__(self, other):
+        return self * other
 
     def tanh(self):
         x = self.data
