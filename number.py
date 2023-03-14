@@ -13,6 +13,7 @@ class Number:
         return f'{self.data}'
 
     def __add__(self, other):
+        other  = other if isinstance(other, Number) else Number(data=other)
         out = Number(data=self.data + other.data, _children=(self, other))
 
         def _backward():
@@ -24,6 +25,7 @@ class Number:
         return out
 
     def __mul__(self, other):
+        other  = other if isinstance(other, Number) else Number(data=other)
         out = Number(data=self.data * other.data, _children=(self, other))
 
         def _backward():
