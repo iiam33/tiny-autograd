@@ -16,8 +16,8 @@ class Number:
         out = Number(data=self.data + other.data, _children=(self, other))
 
         def _backward():
-            self.grad = 1.0 * out.grad
-            other.grad = 1.0 * out.grad
+            self.grad += 1.0 * out.grad
+            other.grad += 1.0 * out.grad
 
         out._backward = _backward
 
@@ -27,8 +27,8 @@ class Number:
         out = Number(data=self.data * other.data, _children=(self, other))
 
         def _backward():
-            self.grad = other.data * out.grad
-            other.grad = self.data * out.grad
+            self.grad += other.data * out.grad
+            other.grad += self.data * out.grad
 
         out._backward = _backward
 
@@ -41,7 +41,7 @@ class Number:
         out = Number(data=t, _children=(self,))
 
         def _backward():
-            self.grad = (1 - t**2) * out.grad
+            self.grad += (1 - t**2) * out.grad
 
         out._backward = _backward
 
