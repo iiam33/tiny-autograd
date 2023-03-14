@@ -3,7 +3,7 @@ from graphviz import Graph
 from pathlib import Path
 
 pwd = Path.cwd()
-dir = Path.joinpath(pwd, 'graph', 'graph_o2.gv')
+dir = Path.joinpath(pwd, 'graph', 'graph_tenh.gv')
 
 
 class CustomGraph:
@@ -54,7 +54,10 @@ x1w1x2w2.label = 'x1*w1+x2*w2'
 n = x1w1x2w2 + b
 n.label = 'n'
 
-o = n.tanh()
+# o = n.tanh()
+e = (2*n).exp()
+e.label = 'e'
+o = (e - 1) /  (e + 1)
 o.label = 'o'
 
 o.backward()
