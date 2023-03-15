@@ -11,7 +11,8 @@ class CustomGraph:
         nodes, edges = set(), set()
 
         def build(root):
-            nodes.add(root)
+            if root not in nodes:
+                nodes.add(root)
             for node in root._prev:
                 nodes.add(node)
                 edges.add((node, root))
@@ -20,7 +21,7 @@ class CustomGraph:
         build(root)
         return nodes, edges
 
-    def draw(root):
+    def draw(root, path):
         nodes, edges = CustomGraph.create(root)
 
         graph = Graph(format='jpeg', graph_attr={'rankdir': 'LR'})
@@ -32,7 +33,7 @@ class CustomGraph:
         for head, tail in edges:
             graph.edge(str(id(head)), str(id(tail)))
 
-        graph.render(dir)
+        graph.render(path)
 
 
 # input x1, x2
@@ -62,4 +63,4 @@ o.label = 'o'
 
 o.backward()
 
-CustomGraph.draw(o)
+# CustomGraph.draw(o)
