@@ -63,4 +63,4 @@ o.label = 'o'
 
 o.backward()
 
-# CustomGraph.draw(o)
+CustomGraph.draw(o)
